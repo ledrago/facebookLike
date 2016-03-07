@@ -1,0 +1,17 @@
+<h1>Friends List of {{user.usr.last_name}} {{user.usr.first_name}} </h1>
+<table class="table table-bordered" ng-controller="UserController as user">
+    <tr>
+        <th>Name</th>
+        <th>...</th>
+        <th>Action</th>
+    </tr>
+    <tr ng-repeat="friend in user.friends">
+        <td>{{friend.last_name}} {{friend.first_name}}</td>
+        <td>...</td>
+        <td>
+            <form ng-submit="user.removefriend(user.usr, friend)" >
+                <button type="submit" class="btn btn-danger">Remove friend</button>
+            </form>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,19 @@
+<h1>Users List</h1>
+<table class="table table-bordered" ng-controller="UserController as user">
+    <tr>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    <tr ng-repeat="userin in user.users">
+        <td><a href="/posts/users/{{userin._id}}">{{userin.last_name}} {{userin.first_name}}</a></td>
+        <td>
+            <div ng-show = "user.usr._id != userin._id || userin.friend">
+                    <form ng-submit="user.addfriend(user.usr._id, userin)" >
+                        <button type="submit" class="btn btn-success">Add friend</button>
+                    </form>
+                </div>
+            </div>
+
+        </td>
+    </tr>
+</table>

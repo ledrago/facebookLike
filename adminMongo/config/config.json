@@ -1,0 +1,7 @@
+{
+  "connections": {
+    "ruschmean": {
+      "connection_string": "mongodb://mathieu:mathieu2016@ds047935.mongolab.com:47935/finchdb"
+    }
+  }
+}

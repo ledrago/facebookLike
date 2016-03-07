@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div ng-show="pstu.friend[0]._id != pstu.posts[0].recipient._id"><p>{{pstu.posts[0].recipient.first_name}} is not your friend</p></div>
+<div ng-show="pstu.friend[0]._id == pstu.posts[0].recipient._id">
+<form ng-submit="pstu.sendPost()">
+    <div class="form-group">
+        <label for="text">Your post</label>
+        <input type="text" class="form-control" id="text" placeholder="share your thoughts..." ng-model="pstu.newpst.text">
+    </div>
+    <button type="submit" class="btn btn-default">Post</button>
+</form><br>
+
+<div ng-repeat="post in pstu.posts | orderBy: '-'">
+    <div class="well well-lg" >
+        <div ng-show="post.recipient._id == post.creator._id">{{post.creator.first_name}} shared a post<br><br></div>
+        <div ng-show="post.recipient._id != post.creator._id">{{post.creator.first_name}}  >>  {{post.recipient.first_name}}</div>
+        <div>{{post.text}}<br><br></div>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{post._id}}" aria-expanded="false" aria-controls="collapseComments">Comment</button>
+        <button class="btn btn-primary" type="button" ng-click="pst.removePost(post._id)" ng-show="post.creator._id == main.usr._id">Remove Post</button>
+        <div class="collapse in" id={{post._id}}>
+            <br><form ng-submit="pstu.sendComment(post._id)">
+            <br><div class="well">
+            <label for="comment"></label>
+            <input type="text" class="form-control" id="comment" placeholder="comment..." ng-model="pstu.newcmt[post._id].text">
+        </div>
+            <div ng-repeat="comment in post.comments | orderBy: '+'" class="alert alert-info" role="alert">{{comment.creator}} say<br><br>{{comment.text}}
+                <button class="btn btn-primary" type="button" ng-click="pst.removeComment(post._id, comment._id)" ng-show="comment.creator._id == main.usr._id"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+
+</div>
+</body>
+</html>

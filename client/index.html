@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" ng-app="app" ng-controller="MainController as main">
+
+<head>
+    <base href="/">
+    <title>Fuck you Mark </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/libs/angular-bootstrap-simple-chat/src/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<!-- MainController -->
+<div class="container" >
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header" ng-app="app" >
+                <a class="navbar-brand" href="/" >
+                    Hello {{main.name}}
+                </a>
+            </div>
+            <div ng-switch on="main.session">
+                <div ng-switch-when="ko">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/users/SignUp">Sign up</a></li>
+                        <li><a href="/users/SignIn" >Sign in</a></li>
+                    </ul>
+                </div>
+                <div ng-switch-when="ok">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/posts">Posts</a></li>
+                        <li><a href="" ng-click="main.signout()">Sign out</a></li>
+                        <li><a href="/user/edit">My account</a></li>
+                        <li><a href='/user/friends'>Friends</a></li>
+                        <li><a href="/users/index">Users list</a></li>
+                        <li><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#pending" aria-expanded="false" aria-controls="pending">
+                            {{main.notifications}}
+                        </button></li>
+
+                    </ul>
+                </div>
+                <div ng-switch-default>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="collapse" id="pending">
+        <div class="well">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                <tr ng-repeat="pending in main.pendings">
+                    <td>{{pending.first_name}} {{pending.last_name}}</td>
+                    <td><form ng-submit="main.confirmfriend(main.usr._id,pending)" >
+                        <button type="submit" class="btn btn-success">Add friend</button>
+                    </form></td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- !Navbar -->
+
+<!-- Angular View -->
+<div ng-view>
+
+</div>
+<!-- !Angular View -->
+
+</div>
+<!-- MainController -->
+
+<!-- JS Includes -->
+<script src="/libs/jquery/dist/jquery.min.js"></script>
+<script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/libs/angular/angular.js"></script>
+<script src="/libs/angular-route/angular-route.min.js"></script>
+<script src="/libs/angular-md5/angular-md5.js"></script>
+<script src="/libs/angular-cookies/angular-cookies.js"></script>
+<script src="/libs/angular-bootstrap-simple-chat/src/scripts/index.js"></script>
+
+<script src="/js/app.js"></script>
+<script src="/js/user/UserController.js"></script>
+<script src="/js/home/HomeController.js"></script>
+<script src="/js/post/PostController.js"></script>
+<script src="/js/post/PostUserController.js"></script>
+<script src="/js/MainController.js"></script>
+<script src="/js/routes.js"></script>
+
+<!-- !JS Includes -->
+</body>
+
+</html>

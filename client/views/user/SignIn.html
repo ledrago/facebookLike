@@ -1,0 +1,29 @@
+</div>
+<div ng-switch on="login.status">
+    <div ng-switch-when="ok">
+        <div class="alert alert-success" role="alert" n-controller="user">You are log !</div>
+    </div>
+    <div ng-switch-when="ko">
+        <div class="alert alert-danger" role="alert" n-controller="user">Wrong login or password !</div>
+    </div>
+    <div ng-switch-default>
+    </div>
+</div>
+
+
+<form ng-submit="user.signin()">
+
+
+<div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" placeholder="Email" ng-model="user.user.email">
+</div>
+
+<div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.user.password">
+</div>
+
+    <button type="submit" class="btn btn-default" >Sign In</button>
+
+</form>
